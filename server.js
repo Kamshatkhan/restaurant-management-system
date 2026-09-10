@@ -112,4 +112,8 @@ const server = http.createServer(async (req, res) => {
   const type = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png' }[path.extname(file)] || 'application/octet-stream';
   res.writeHead(200, { 'Content-Type': type }); fs.createReadStream(file).pipe(res);
 });
-server.listen(8000, '127.0.0.1', () => console.log('EMBER: http://localhost:8000 | admin / admin123'));
+const PORT = process.env.PORT || 8000;
+
+server.listen(PORT, '0.0.0.0', () => {
+    console.log(`EMBER: http://localhost:${PORT}`);
+});
